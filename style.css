@@ -14,6 +14,8 @@
   text-align: center;
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: center;
   padding: 150px;
 }
 .mid-page {
@@ -38,4 +40,30 @@
 .Images {
   border: #1f2937 solid 5px;
   border-radius: 5%;
+  padding: 15px;
+  margin: 25px;
+}
+.column-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.links-img {
+  display: flex;
+}
+button {
+  background-color: #3b82f6;
+  color: white;
+}
+.additional-content {
+  padding: 25px;
+  background-color: #1f2937;
+  color: #e5e7eb;
+  border-radius: ;
+}
+ul {
+  list-style-type: none;
+}
+.link-to-airbnb {
+  padding: 15px;
 }
