@@ -1,205 +1,253 @@
-@import url("https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&display=swap");
 
+:root {
+  --sand: #e6d3b1;
+  --desert: #d0b48f;
+  --ocean: #4aa6a6;
+  --dark: #2e2b25;
+  --light: #fff;
+}
+
+/* בסיס */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
+  font-family: "Assistant", sans-serif;
 }
 
 body {
-  font-family: "Heebo", sans-serif;
-  background: linear-gradient(
-    to bottom,
-    #fceabb,
-    #f8d593,
-    #e9b580,
-    #d7a067,
-    #a97847
-  );
-  color: #3b2f2f;
-  direction: rtl;
+  background-color: var(--light);
+  color: var(--dark);
+  line-height: 1.7;
+  scroll-behavior: smooth;
 }
 
 /* HERO */
 .hero {
   background: url("Images/01glass_door.jpg") center/cover no-repeat;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
-}
-
-.overlay {
-  background: rgba(0, 0, 0, 0.45);
-  padding: 50px;
-  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  color: #fff;
+}
+
+.hero .overlay {
+  background: rgba(0, 0, 0, 0.45);
+  color: white;
+  padding: 2rem;
+  border-radius: 1rem;
   max-width: 700px;
-  z-index: 2;
+  animation: fadeIn 2s ease-out;
 }
 
-.overlay h1 {
-  font-size: 2.8rem;
-  margin-bottom: 15px;
+.hero h1 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
 }
 
-.overlay p {
-  font-size: 1.2rem;
-  margin-bottom: 25px;
+.hero p {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
 }
 
 .book-btn {
-  background: linear-gradient(45deg, #fbbf24, #f59e0b);
-  color: #1f2937;
-  padding: 12px 32px;
-  border-radius: 50px;
+  background: var(--sand);
+  color: var(--dark);
+  padding: 0.8rem 1.5rem;
+  border-radius: 30px;
   text-decoration: none;
   font-weight: 600;
-  transition: transform 0.3s;
-  position: relative;
-  z-index: 3;
+  transition: 0.3s ease;
 }
 
 .book-btn:hover {
-  transform: scale(1.05);
+  background: var(--desert);
 }
 
-/* NAV */
+/* ניווט */
 .nav-bar {
   display: flex;
   justify-content: center;
-  gap: 40px;
-  background: rgba(255, 255, 255, 0.15);
-  padding: 15px;
-  position: sticky;
-  top: 0;
-  backdrop-filter: blur(10px);
-  z-index: 10;
+  gap: 2rem;
+  padding: 1rem 0;
+  background: #f9f6f1;
+  border-bottom: 1px solid #ddd;
 }
 
 .nav-bar a {
-  color: #fff;
   text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s;
+  color: var(--dark);
+  font-weight: 600;
 }
 
 .nav-bar a:hover {
-  color: #fef08a;
+  color: var(--ocean);
 }
 
-/* ABOUT */
+/* סקשנים */
+section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.2s ease, transform 1.2s ease;
+}
+
+section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* אודות */
 .about {
-  padding: 80px 20px;
-  background-color: rgba(255, 255, 255, 0.3);
+  padding: 4rem 2rem;
   text-align: center;
-  backdrop-filter: blur(6px);
+  background: #fdf9f4;
 }
 
-/* GALLERY */
+.about h2 {
+  font-size: 2rem;
+  color: var(--ocean);
+  margin-bottom: 1rem;
+}
+
+.about p {
+  max-width: 850px;
+  margin: 0 auto 2rem;
+}
+
+.details-grid {
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+  flex-wrap: wrap;
+}
+
+.details-grid ul {
+  list-style: none;
+  text-align: right;
+}
+
+.details-grid li {
+  margin-bottom: 0.8rem;
+  position: relative;
+  padding-right: 1rem;
+}
+
+.details-grid li::before {
+  content: "•";
+  color: var(--ocean);
+  position: absolute;
+  right: 0;
+}
+
+/* גלריה */
 .gallery {
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--light);
+  padding: 4rem 2rem;
   text-align: center;
-  padding: 80px 20px;
+}
+
+.gallery h2 {
+  color: var(--ocean);
+  margin-bottom: 2rem;
 }
 
 .gallery-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .gallery-grid img {
   width: 100%;
-  max-width: 320px;
-  height: 230px;
-  object-fit: cover;
   border-radius: 10px;
-  cursor: pointer;
-  transition: transform 0.3s, box-shadow 0.3s;
+  object-fit: cover;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .gallery-grid img:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  transform: scale(1.03);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
 }
 
-/* CONTACT */
+/* צור קשר */
 .contact {
-  background-color: rgba(255, 255, 255, 0.35);
+  background: #faf4ed;
+  padding: 4rem 2rem;
   text-align: center;
-  padding: 100px 20px;
-  backdrop-filter: blur(5px);
 }
 
 .contact h2 {
-  color: #7a4e2d;
-  margin-bottom: 20px;
+  color: var(--ocean);
+  margin-bottom: 1rem;
+}
+
+.contact p {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
 }
 
 .contact-buttons {
   display: flex;
   justify-content: center;
-  gap: 15px;
+  gap: 1.5rem;
   flex-wrap: wrap;
 }
 
 .contact-btn {
-  background-color: #c27b37;
-  color: #fff;
-  text-decoration: none;
-  padding: 12px 28px;
+  background: var(--ocean);
+  color: var(--light);
+  padding: 0.8rem 1.5rem;
   border-radius: 30px;
+  text-decoration: none;
   font-weight: 600;
-}
-
-.contact-btn.secondary {
-  background-color: #a15c38;
+  transition: 0.3s ease;
 }
 
 .contact-btn:hover {
-  background-color: #8a4f2e;
+  background: var(--desert);
+  color: var(--dark);
+}
+
+.contact-btn.secondary {
+  background: var(--sand);
+  color: var(--dark);
 }
 
 .airbnb-link {
-  color: #7a4e2d;
-  text-decoration: underline;
-  font-weight: 500;
+  display: inline-block;
+  margin-top: 1.5rem;
+  color: var(--ocean);
+  text-decoration: none;
+  font-weight: 600;
 }
 
-/* FOOTER */
+.airbnb-link:hover {
+  text-decoration: underline;
+}
+
+/* פוטר */
 footer {
-  background: #3b2f2f;
-  color: #f7f3ef;
+  background: var(--dark);
+  color: var(--light);
   text-align: center;
-  padding: 20px;
+  padding: 1rem;
   font-size: 0.9rem;
 }
 
-/* LIGHTBOX */
-.lightbox {
-  display: none;
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.85);
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.lightbox img {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 10px;
-}
-
-.lightbox.active {
-  display: flex;
+/* אנימציות */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

@@ -1,19 +1,24 @@
-// תצוגת תמונה מוגדלת (Lightbox)
-const galleryImages = document.querySelectorAll(".gallery-grid img");
-const lightbox = document.createElement("div");
-lightbox.classList.add("lightbox");
-document.body.appendChild(lightbox);
+// אפקט אנימציה בגלילה
+const sections = document.querySelectorAll("section");
 
-const img = document.createElement("img");
-lightbox.appendChild(img);
-
-galleryImages.forEach((image) => {
-  image.addEventListener("click", () => {
-    lightbox.classList.add("active");
-    img.src = image.src;
+function revealSections() {
+  const trigger = window.innerHeight * 0.85;
+  sections.forEach((section) => {
+    const top = section.getBoundingClientRect().top;
+    if (top < trigger) {
+      section.classList.add("visible");
+    }
   });
-});
+}
 
-lightbox.addEventListener("click", () => {
-  lightbox.classList.remove("active");
+window.addEventListener("scroll", revealSections);
+window.addEventListener("load", revealSections);
+
+// גלילה רכה לקישורים בתפריט
+document.querySelectorAll(".nav-bar a").forEach((anchor) => {
+  anchor.addEventListener("click", function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute("href"));
+    target.scrollIntoView({ behavior: "smooth" });
+  });
 });
